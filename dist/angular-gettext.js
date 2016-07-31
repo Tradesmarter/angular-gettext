@@ -1,3 +1,19 @@
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module unless amdModuleId is set
+    define(["angular"], function (a0) {
+      return (root['angularGettextModule'] = factory(a0));
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require("angular"));
+  } else {
+    root['angularGettextModule'] = factory(angular);
+  }
+}(this, function (angular) {
+
 /**
  * @ngdoc module
  * @name gettext
@@ -23,7 +39,10 @@
  * gettextPlurals();         // 1
  * ```
  */
-angular.module('gettext', []);
+
+/* Used to export the module name */
+var angularGettextModule = 'gettext';
+angular.module(angularGettextModule, []);
 /**
  * @ngdoc object
  * @module gettext
@@ -40,7 +59,7 @@ angular.module('gettext', []);
  * })
  * ```
  */
-angular.module('gettext').constant('gettext', function (str) {
+angular.module(angularGettextModule).constant('gettext', function (str) {
     /*
      * Does nothing, simply returns the input string.
      *
@@ -812,3 +831,7 @@ angular.module('gettext').factory('gettextUtil', function gettextUtil() {
         lcFirst: lcFirst
     };
 });
+
+return angularGettextModule;
+
+}));

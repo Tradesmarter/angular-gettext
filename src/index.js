@@ -23,7 +23,10 @@
  * gettextPlurals();         // 1
  * ```
  */
-angular.module('gettext', []);
+
+/* Used to export the module name */
+var angularGettextModule = 'gettext';
+angular.module(angularGettextModule, []);
 /**
  * @ngdoc object
  * @module gettext
@@ -40,7 +43,7 @@ angular.module('gettext', []);
  * })
  * ```
  */
-angular.module('gettext').constant('gettext', function (str) {
+angular.module(angularGettextModule).constant('gettext', function (str) {
     /*
      * Does nothing, simply returns the input string.
      *
